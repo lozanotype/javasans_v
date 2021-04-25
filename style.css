@@ -1,0 +1,166 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  width: 100px;
+  text-align: left !important;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+
+.slider {
+  background-color: grey;
+  border: none;
+  color: white;
+  fill: green; 
+  padding: 10px 0px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Set the menu at a fixed position above the sketch */
+#menu {
+  position: fixed;
+  z-index: 1;
+}
+
+/* Display menu items in a vertical-stacked flexbox */
+.menu-section {
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-section label {
+  color: rgb(128,128,128);
+  text-size: 15px;
+}
+
+/* Spacing for menu items */
+.menu-section input,
+.menu-section select,
+.menu-section button {
+  margin-bottom: 1.7em;
+}
+
+/* Hide mobile menu buttons by default */
+#menu-open,
+#menu-close {
+  display: none;
+}
+
+/* Hide file button by default */
+#upload-image {
+  display: none;
+}
+
+/* Hide mobile save button by default */
+#save-image-mobile {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+}
+
+/* --- Settings for mobile mode with an arbitrary breakpoint --- */
+
+@media screen and (max-width: 1024px) { 
+  /* adjust the menu styling so it becomes a slide-up menu */
+  #menu {
+    width: 100%;
+    height: 36vh;
+    display: flex;
+    background-color:#121212dd;
+    overflow-y:scroll;
+    justify-content: center;
+    padding: 25px 0;
+    
+    /* Hide this off-screen at the bottom by default */
+    transform: translateY(100vh);
+  }
+  /* limit the size of menu items in the box and center it 
+     horizontally with auto margins */
+  .menu-section {
+    width: 85vw;
+    overflow-y:scroll;
+    margin: auto auto;
+  }
+  .menu-section label {
+    color: white;
+    text-size: 15px;
+  }
+  input[type="slider"] {
+    width: 100%; /* 100% of the .menu-section width */ 
+  }
+  select {
+    width: 100%; /* 100% of the .menu-section width */ 
+  }
+  /* Hide the normal save button and display the mobile version */
+  #save-image {
+    display: none;
+  }
+  #save-image-mobile {
+    display: block;
+  }
+  /* Display the menu open button in the bottom-right corner */
+  #menu-open {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+  }
+  /* Display the menu close button at the top-right of the menu */
+  #menu-close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+  }
+}
+
+/* --- Animations --- */
+
+ /* Small amount of animation code for the hidden mobile menu */
+@keyframes slideup {
+  from {transform: translateY(100vh);}
+  to {transform: translateY(60vh);}
+}
+
+@keyframes slidedown {
+  from {transform: translateY(60vh);}
+  to {transform: translateY(100vh);}
+}
+
+/* These animation classes are attached to the menu div when the
+   relevant button is clicked. This happens through Javascript. */
+.slide-up {
+  animation: slideup .5s forwards;
+} 
+
+.slide-down {
+  animation: slidedown .5s forwards;
+} 
